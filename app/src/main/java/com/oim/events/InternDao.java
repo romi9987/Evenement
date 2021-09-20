@@ -18,8 +18,6 @@ public class InternDao  implements Dao<InternObject> {
     private SQLiteDatabase dbWrite,dbRead;
     private DBHelper dbHelper;
 
-
-
     public InternDao(Context context) {
         dbHelper = new DBHelper(context);
     }
