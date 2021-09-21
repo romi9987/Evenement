@@ -7,28 +7,28 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
+public class internAdapter extends RecyclerView.Adapter<InternViewHolder> {
 
     List<InternObject> list;
 
     //ajouter un constructeur prenant en entrée une liste
-    public MyAdapter(List<InternObject> list) {
+    public internAdapter(List<InternObject> list) {
         this.list = list;
     }
 
     //cette fonction permet de créer les viewHolder
     //et par la même indiquer la vue à inflater (à partir des layout xml)
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int itemType) {
-        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cell_cards,viewGroup,false);
-        return new MyViewHolder(view);
+    public InternViewHolder onCreateViewHolder(ViewGroup viewGroup, int itemType) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.intern_cell_cards,viewGroup,false);
+        return new InternViewHolder(view);
     }
 
     //c'est ici que nous allons remplir notre cellule avec le texte/image de chaque MyObjects
     @Override
-    public void onBindViewHolder(MyViewHolder myViewHolder, int position) {
+    public void onBindViewHolder(InternViewHolder internViewHolder, int position) {
         InternObject internObject = list.get(position);
-        myViewHolder.bind(internObject);
+        internViewHolder.bind(internObject);
     }
 
     @Override

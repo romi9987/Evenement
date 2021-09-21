@@ -23,15 +23,15 @@
     <!-- "file" submenu -->
     <menu>
         <item
-            android:id="@+id/add_evenement"
+            android:id="@+id/item4"
             android:title="Add Evenement"/>
 
         <item
-            android:id="@+id/update_evenement"
+            android:id="@+id/item5"
             android:title="Update Evenement"/>
 
         <item
-            android:id="@+id/delete_evenement"
+            android:id="@+id/item6"
             android:title="Delete Evenement"/>
     </menu>
 </item>

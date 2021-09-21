@@ -4,13 +4,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-public class MyViewHolder extends RecyclerView.ViewHolder{
+public class InternViewHolder extends RecyclerView.ViewHolder{
 
     private TextView firstNameView;
     private TextView nameViewView;
 
     //itemView est la vue correspondante à 1 cellule
-    public MyViewHolder(View itemView) {
+    public InternViewHolder(View itemView) {
         super(itemView);
 
         //c'est ici que l'on fait nos findView

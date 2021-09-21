@@ -80,12 +80,12 @@ public class EventDao  implements Dao<EventObject> {
         res.moveToFirst();
         // Puis tant qu'il y a des enregistrements
         while(!res.isAfterLast()) {
-            // J'instancie un objet Capital avec l'enregistrement en cours de lecture
+            // J'instancie un objet event avec l'enregistrement en cours de lecture
             EventObject event = new EventObject(res.getInt(res.getColumnIndex(TABLE_EVENT_COLUMN_ID)),
                     res.getString(res.getColumnIndex(TABLE_EVENT_COLUMN_EVENT_NAME)),
                     res.getString(res.getColumnIndex(TABLE_EVENT_COLUMN_DATE)),
-                    res.getString(res.getColumnIndex(TABLE_EVENT_COLUMN_PLACE))
-                    );
+                    res.getString(res.getColumnIndex(TABLE_EVENT_COLUMN_PLACE)),
+                    null);
             // Puis j'ajoute mon évènement à ma liste d'évènements
             events.add(event);
             // Et je déplace le curseur sur l'enregistrement suivant.
@@ -100,28 +100,28 @@ public class EventDao  implements Dao<EventObject> {
 
     //renvoi un objet correspondant à l' id en base
     @Override
-    public InternObject read(int id) {
+    public EventObject read(int id) {
         open();
         return null;
     }
 
     // Méthode de mise à jour d'un intern avec en paramètre un objet intern
     @Override
-    public void update(InternObject pIntern){
+    public void update(EventObject pEvent){
         open();
         ContentValues values = new ContentValues();
-        values.put(TABLE_INTERN_COLUMN_INTERN_FIRST_NAME, pIntern.getInternFirstName());
-        values.put(TABLE_INTERN_COLUMN_NAME, pIntern.getInternName());
+        values.put(TABLE_EVENT_COLUMN_EVENT_NAME, pEvent.getEventName());
+        values.put(TABLE_EVENT_COLUMN_PLACE, pEvent.getEventPlace());
         // Après avoir alimenté contentValues, je peux lancer ma requete d'update, avec en paramètre de ma requete l'ID
         // de mon objet Capital (Attention, vous ne pouvez pas envoyer un int, vous devez envoyer une String --> String.valueOf(pCapital.getId())
-        dbWrite.update(TABLE_EVENT, values, TABLE_INTERN_COLUMN_ID + " = ?", new String[] { String.valueOf(pIntern.getId())});
+        dbWrite.update(TABLE_EVENT, values, TABLE_INTERN_COLUMN_ID + " = ?", new String[] { String.valueOf(pEvent.getEvent_id())});
         close();
     }
     // Méthode de suppression d'un Intern
     @Override
-    public  void delete(InternObject pIntern) {
+    public  void delete(EventObject pEvent) {
         open();
-        dbWrite.delete(TABLE_EVENT, TABLE_INTERN_COLUMN_ID + " = ?", new String[] { String.valueOf(pIntern.getId())});
+        dbWrite.delete(TABLE_EVENT, TABLE_INTERN_COLUMN_ID + " = ?", new String[] { String.valueOf(pEvent.getEvent_id())});
         close();
     }
 }

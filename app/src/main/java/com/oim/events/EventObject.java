@@ -57,7 +57,7 @@ public class EventObject implements Serializable {
         eventDb.delete(pEvent);
     }
 
-    // Fonction de MAJ d'une capitale qui appelle la fonction suppression du helper
+    // Fonction de MAJ d'une Event qui appelle la fonction suppression du helper
     public static void updateEvent(EventObject pEvent) { eventDb.update(pEvent);}
 
 // Getters et setters
@@ -103,4 +103,4 @@ public class EventObject implements Serializable {
         this.internObject = internObject;
     }
 
-}}
+}

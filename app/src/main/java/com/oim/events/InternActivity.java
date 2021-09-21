@@ -21,7 +21,7 @@ public class InternActivity extends AppCompatActivity {
     // Bloc déclaratif
     private RecyclerView recyclerView;
     private List<InternObject> internsList;
-    private MyAdapter myAdapter;
+    private internAdapter internAdapter;
     private Resources res;
 
     @Override
@@ -44,8 +44,8 @@ public class InternActivity extends AppCompatActivity {
         // Je définis l'adaptateur de mon RecyclerView
         // Vu que ce bloc est répété trois fois, il pourrait très bien aller dans une fonction
         internsList = InternObject.getInternsList();
-        myAdapter = new MyAdapter(internsList);
-        recyclerView.setAdapter(myAdapter);
+        internAdapter = new internAdapter(internsList);
+        recyclerView.setAdapter(internAdapter);
 
         // Je gère l'orientation de mon device
         if (displayMode == 1) {
@@ -74,8 +74,8 @@ public class InternActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         internsList = InternObject.getInternsList();
-        myAdapter = new MyAdapter(internsList);
-        recyclerView.setAdapter(myAdapter);
+        internAdapter = new internAdapter(internsList);
+        recyclerView.setAdapter(internAdapter);
     }
 
     @Override
@@ -93,6 +93,10 @@ public class InternActivity extends AppCompatActivity {
                 Intent addItem1 = new Intent(this, AddIntern.class);
                 startActivity(addItem1);
                 return true;
+            case R.id.item4:            //where 'icon' would be your item ID from menu.xml.
+                Intent addItem4 = new Intent(this, AddEvent.class);
+                startActivity(addItem4);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -103,8 +107,8 @@ public class InternActivity extends AppCompatActivity {
     private void deleteIntern(int position) {
         InternObject.deleteIntern(internsList.get(position));
         internsList = InternObject.getInternsList();
-        myAdapter = new MyAdapter(internsList);
-        recyclerView.setAdapter(myAdapter);
+        internAdapter = new internAdapter(internsList);
+        recyclerView.setAdapter(internAdapter);
     }
 
     // Affichage d'une boite de dialogue

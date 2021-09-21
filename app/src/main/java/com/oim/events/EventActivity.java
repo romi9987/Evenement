@@ -20,7 +20,7 @@ public class EventActivity extends AppCompatActivity {
     // Bloc déclaratif
     private RecyclerView recyclerView;
     private List<EventObject> eventsList;
-    private MyAdapter myAdapter;
+    private eventAdapter eventAdapter;
     private Resources res;
 
     @Override
@@ -37,14 +37,14 @@ public class EventActivity extends AppCompatActivity {
         // Je teste le nombre d'enregistrements présents dans ma base de données.
         // Si aucun enregistrement --> j'ajoute des capitales à ma BDD
         if(EventObject.getEventsList().size() == 0) {
-            ajouterEvents();
+            ajouterEvent();
         }
 
         // Je définis l'adaptateur de mon RecyclerView
         // Vu que ce bloc est répété trois fois, il pourrait très bien aller dans une fonction
         eventsList = EventObject.getEventsList();
-        myAdapter = new MyAdapter(eventsList);
-        recyclerView.setAdapter(myAdapter);
+        eventAdapter = new eventAdapter(eventsList);
+        recyclerView.setAdapter(eventAdapter);
 
         // Je gère l'orientation de mon device
         if (displayMode == 1) {
@@ -73,8 +73,8 @@ public class EventActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         eventsList = EventObject.getEventsList();
-        myAdapter = new MyAdapter(eventsList);
-        recyclerView.setAdapter(myAdapter);
+        eventAdapter = new eventAdapter(eventsList);
+        recyclerView.setAdapter(eventAdapter);
     }
 
     @Override
@@ -88,9 +88,9 @@ public class EventActivity extends AppCompatActivity {
     {
         switch (item.getItemId())
         {
-            case R.id.item2:            //where 'icon' would be your item ID from menu.xml.
-                Intent addItem2 = new Intent(this, AddEvent.class);
-                startActivity(addItem2);
+            case R.id.item1:            //where 'icon' would be your item ID from menu.xml.
+                Intent addItem1 = new Intent(this, AddEvent.class);
+                startActivity(addItem1);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -102,8 +102,8 @@ public class EventActivity extends AppCompatActivity {
     private void deleteCapital(int position) {
         EventObject.deleteEvent(eventsList.get(position));
         eventsList = EventObject.getEventsList();
-        myAdapter = new MyAdapter(eventsList);
-        recyclerView.setAdapter(myAdapter);
+        eventAdapter = new eventAdapter(eventsList);
+        recyclerView.setAdapter(eventAdapter);
     }
 
     // Affichage d'une boite de dialogue

@@ -26,34 +26,12 @@
          donc rajouter un LinearLayout -->
 
         <TextView
-            android:id="@+id/first_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:selectableItemBackground"
-            android:padding="20dp"
-            tools:text="Jean"
-            android:fontFamily="sans-serif"
-            android:textColor="#333"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?android:selectableItemBackground"
-            android:padding="20dp"
-            tools:text="Dupont"
-            android:fontFamily="sans-serif"
-            android:textColor="#333"
-            android:textSize="18sp" />
-
-        <TextView
             android:id="@+id/event_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?android:selectableItemBackground"
             android:padding="20dp"
-            tools:text="Jean"
+            tools:text="name"
             android:fontFamily="sans-serif"
             android:textColor="#333"
             android:textSize="18sp" />
@@ -64,7 +42,7 @@
             android:layout_height="wrap_content"
             android:background="?android:selectableItemBackground"
             android:padding="20dp"
-            tools:text="Dupont"
+            tools:text="place"
             android:fontFamily="sans-serif"
             android:textColor="#333"
             android:textSize="18sp" />
@@ -75,7 +53,7 @@
             android:layout_height="wrap_content"
             android:background="?android:selectableItemBackground"
             android:padding="20dp"
-            tools:text="Dupont"
+            tools:text="date"
             android:fontFamily="sans-serif"
             android:textColor="#333"
             android:textSize="18sp" />

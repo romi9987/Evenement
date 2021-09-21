@@ -34,7 +34,7 @@ public class AddIntern extends AppCompatActivity {
         // J'utilise un bloc Try/catch pour gérer le cas où je n'ai pas d'extra.
         try {
             // Je lance donc mon affectation
-            intern = (InternObject)intent.getSerializableExtra("cityExtra");
+            intern = (InternObject)intent.getSerializableExtra("internExtra");
             // Dans ce cas, j'ai bien un extra, je modifie mon booléen --> Mode Edition!
             emptyExtra = false;
             // Et j'alimente mes champs Text de mes EditText avec le contenu de mon extra (objet Capital)
