@@ -22,11 +22,12 @@ public class InternDao  implements Dao<InternObject> {
         dbHelper = new DBHelper(context);
     }
 
+    @Override
     public void open() throws SQLException {
         dbWrite = dbHelper.getWritableDatabase();
         dbRead = dbHelper.getReadableDatabase();
     }
-
+    @Override
     public void close() {
         dbHelper.close();
     }
