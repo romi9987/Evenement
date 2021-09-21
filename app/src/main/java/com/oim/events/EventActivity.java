@@ -3,9 +3,9 @@ package com.oim.events;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,12 +15,11 @@ import android.view.View;
 
 import java.util.List;
 
-
-public class InternActivity extends AppCompatActivity {
+public class EventActivity extends AppCompatActivity {
 
     // Bloc déclaratif
     private RecyclerView recyclerView;
-    private List<InternObject> internsList;
+    private List<EventObject> eventsList;
     private MyAdapter myAdapter;
     private Resources res;
 
@@ -30,21 +29,21 @@ public class InternActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         res = getResources();
         // Je crée une instance de mon Helper.
-        InternObject.initHelper(this);
+        EventObject.initHelper(this);
         recyclerView = findViewById(R.id.events);
 
         int displayMode = res.getConfiguration().orientation;
 
         // Je teste le nombre d'enregistrements présents dans ma base de données.
         // Si aucun enregistrement --> j'ajoute des capitales à ma BDD
-        if(InternObject.getInternsList().size() == 0) {
-            ajouterInterns();
+        if(EventObject.getEventsList().size() == 0) {
+            ajouterEvents();
         }
 
         // Je définis l'adaptateur de mon RecyclerView
         // Vu que ce bloc est répété trois fois, il pourrait très bien aller dans une fonction
-        internsList = InternObject.getInternsList();
-        myAdapter = new MyAdapter(internsList);
+        eventsList = EventObject.getEventsList();
+        myAdapter = new MyAdapter(eventsList);
         recyclerView.setAdapter(myAdapter);
 
         // Je gère l'orientation de mon device
@@ -58,7 +57,7 @@ public class InternActivity extends AppCompatActivity {
         recyclerView.addOnItemTouchListener(new RecyclerTouchListener(this, recyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-            //Nothing to do!
+                //Nothing to do!
             }
             @Override
             public void onLongClick(View view, int position) {
@@ -73,8 +72,8 @@ public class InternActivity extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        internsList = InternObject.getInternsList();
-        myAdapter = new MyAdapter(internsList);
+        eventsList = EventObject.getEventsList();
+        myAdapter = new MyAdapter(eventsList);
         recyclerView.setAdapter(myAdapter);
     }
 
@@ -89,9 +88,9 @@ public class InternActivity extends AppCompatActivity {
     {
         switch (item.getItemId())
         {
-            case R.id.item1:            //where 'icon' would be your item ID from menu.xml.
-                Intent addItem1 = new Intent(this, AddIntern.class);
-                startActivity(addItem1);
+            case R.id.item2:            //where 'icon' would be your item ID from menu.xml.
+                Intent addItem2 = new Intent(this, AddEvent.class);
+                startActivity(addItem2);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -100,10 +99,10 @@ public class InternActivity extends AppCompatActivity {
 
 
     // Fonction de suppression d'une capitale
-    private void deleteIntern(int position) {
-        InternObject.deleteIntern(internsList.get(position));
-        internsList = InternObject.getInternsList();
-        myAdapter = new MyAdapter(internsList);
+    private void deleteCapital(int position) {
+        EventObject.deleteEvent(eventsList.get(position));
+        eventsList = EventObject.getEventsList();
+        myAdapter = new MyAdapter(eventsList);
         recyclerView.setAdapter(myAdapter);
     }
 
@@ -123,15 +122,15 @@ public class InternActivity extends AppCompatActivity {
                 // Si l'utilisateur choisit la première option (donc Edit)
                 if(userChoice == 0) {
                     // Je créé un nouvel intent
-                    Intent updateIntent = new Intent(getApplicationContext(), AddIntern.class);
+                    Intent updateIntent = new Intent(getApplicationContext(), AddEvent.class);
                     // J'y ajoute un extra.
                     // Grâce à l'interface Serializable, je peux véhiculer directement mon objet Capital
-                    updateIntent.putExtra("cityExtra", internsList.get(position));
+                    updateIntent.putExtra("cityExtra", eventsList.get(position));
                     // Et je lance l'activité
                     startActivity(updateIntent);
                 } else {
                     // Si deuxième choix, j'appelle la fonction de suppression de ma capitale
-                    deleteIntern(position);
+                    deleteCapital(position);
                 }
             }
         });
@@ -140,16 +139,8 @@ public class InternActivity extends AppCompatActivity {
     }
 
     // Fonction qui me permet d'ajouter des villes dans la base de données si celle-ci ne contient aucun enregistrement.
-    private void ajouterInterns() {
-        InternObject.addIntern(new InternObject("Christine","ANDRECK"));
-        InternObject.addIntern(new InternObject("Erwan","GARCIA-TORRES"));
-        InternObject.addIntern(new InternObject("Gregory","STROMITZKY"));
-        InternObject.addIntern(new InternObject("Guillaume","SOULICHANH"));
-        InternObject.addIntern(new InternObject("Julien","MIAUT"));
-        InternObject.addIntern(new InternObject("Laura","CARAZO"));
-        InternObject.addIntern(new InternObject("MASSINISSA","MOKRANI"));
-        InternObject.addIntern(new InternObject("Michal","ROLIRAD"));
-        InternObject.addIntern(new InternObject("pedro","LIMA"));
-        InternObject.addIntern(new InternObject("Thierry","LAUMAILLE"));
+    private void ajouterEvent() {
+        EventObject.addEvent(new EventObject("pique-nique", null, "foret", null));
+
     }
 }
