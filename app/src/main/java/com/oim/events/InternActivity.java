@@ -85,12 +85,19 @@ public class InternActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        super.onOptionsItemSelected(item);
-        Intent addIntent = new Intent(this, AddIntern.class);
-        startActivity(addIntent);
-        return true;
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case R.id.item1:            //where 'icon' would be your item ID from menu.xml.
+                Intent addItem1 = new Intent(this, AddIntern.class);
+                startActivity(addItem1);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
+
 
     // Fonction de suppression d'une capitale
     private void deleteCapital(int position) {
