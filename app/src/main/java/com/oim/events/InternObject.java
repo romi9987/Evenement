@@ -39,21 +39,21 @@ public class InternObject implements Serializable {
 
     // Fonction qui me retourne une List de capitales récupérées grace a mon Helper
     public static List<InternObject> getInternsList() {
-        return internDb.getAllIntern();
+        return internDb.getAll();
     }
 
     // Fonction d'ajout d'une capital qui appel la fonction ajout du helper
     public static void addIntern(InternObject pIntern) {
-        internDb.insertIntern(pIntern);
+        internDb.insert(pIntern);
     }
 
     // Fonction de suppression d'une capitale qui appelle la fonction suppression du helper
     public static void deleteIntern(InternObject pIntern) {
-        internDb.deleteIntern(pIntern);
+        internDb.delete(pIntern);
     }
 
     // Fonction de MAJ d'une capitale qui appelle la fonction suppression du helper
-    public static void updateIntern(InternObject pIntern) { internDb.updateIntern(pIntern);}
+    public static void updateIntern(InternObject pIntern) { internDb.update(pIntern);}
 
     // Getters et setters
     public String getInternName() {
